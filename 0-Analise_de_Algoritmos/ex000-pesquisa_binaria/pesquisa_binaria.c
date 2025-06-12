@@ -22,14 +22,20 @@ int pesquisa_binaria(int* vetor, int tamanho, int chave){
 }
 
 int main(){
-    int vet[] = {0,2,4,6,8,10,12,14,16,18,20};
-    int tamanho = sizeof(vet)/sizeof(vet[0]); // retorna o numero certo de bytes;
-
+    //int vet[] = {0,2,4,6,8,10,12,14,16,18,20};
+    //int tamanho = sizeof(vet)/sizeof(vet[0]); // retorna o numero certo de bytes;
+    
+    int value;
+    scanf("%d", &value);
+    int tamanho;
+    scanf("%d", &tamanho);
+    int vet[tamanho];
+    for(int i=0;i<tamanho;i++){
+        scanf("%d", &vet[i]);
+    }
     int *p;
     p = vet;
-    
-    int value=10;
 
     int answer = pesquisa_binaria(p, tamanho, value);
-    printf("Position of %d: %d\n", value, answer);
+    printf("%d", answer);
 }
