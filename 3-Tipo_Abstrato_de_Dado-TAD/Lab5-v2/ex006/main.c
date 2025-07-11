@@ -5,7 +5,7 @@
 #include "livros.h"
 
 int main(){
-    struct book *listBooks;
+    Book *listBooks;
     int maxSize;
     printf("Tamanho Desejado para a Lista: ");
     scanf("%d", &maxSize);
@@ -52,7 +52,7 @@ int main(){
 
                 // nao consegui verificar as entradas;
                 /*
-                while(fmod(vFloat, 1) == 0){ // verifica se eh float; 
+                while(fmod(vFloat, 1) == 0){ // verifica se eh float;
                     printf("\nEntrada invalida. Insira um valor float: ");
                     vFloat = scanf("%f", &bookN.price);
                 }
