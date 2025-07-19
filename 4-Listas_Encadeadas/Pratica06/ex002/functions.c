@@ -74,10 +74,75 @@ Node* removeElement(Node *l, int elem) {
 }
 
 // d) remover o maior elemento da lista (faça a função que encontra o maior separadamente);
+int biggestNumber(Node *l) {
+    if (l == NULL) return 1;
+    Node* aux = l;
+    int biggest = l->item;
+    while (aux != NULL) {
+        if (aux->item > biggest) biggest = aux->item;
+        aux = aux->next;
+    }
+    return biggest;
+}
+
+Node* removeBiggestNumber(Node *l, const int elem) {
+    if (l == NULL) return l;
+    removeElement(l, elem);
+}
 
 // e) retornar apenas os elementos pares em uma nova lista encadeada (a função par deve ser implementada separadamente);
+int isEvenNumber(const int number) {
+    if (number % 2 == 0) return 1;
+    else return 0;
+}
+
+Node* listOfEvens(Node *l) {
+    if (l == NULL) return l;
+    Node *listOfEvens = createEmptyList();
+    Node *p = l;
+    while (p->next != NULL) {
+        if (isEvenNumber(p->item)) {
+            listOfEvens = insertAtBeginning(listOfEvens, p->item);
+        }
+        p = p->next;
+    }
+    return listOfEvens;
+}
 
 // f) contar o número de elementos da lista (criar duas soluções, uma iterativa e outra recursiva);
+int numberOfElementsIterative(Node *l) {
+    if (l == NULL) return 0;
+    Node *p = l;
+    int count = 0;
+    while (p != NULL) {
+        count++;
+        p = p->next;
+    }
+    return count;
+}
+
+int numberOfElementsRecursive(Node *l) {
+    Node *p = l;
+    if (p == NULL) return 0;
+    else return 1 + numberOfElementsRecursive(p->next);
+}
 
 /* g) retornar todos os elementos da lista em um vetor, criado dinâmicamente (usar uma das funções que conta os
 elementos da lista para a alocação dinâmica de memória do vetor); */
+int* returnVector(Node *l, int tam) {
+    if (l == NULL) return 0;
+    Node *p = l;
+
+    int *vector = (int*) malloc (sizeof(int) * tam);
+    if (vector == NULL) return 0; // erro de alocação de memoria;
+
+    int *start = vector; // guarda inicio do vetor
+
+    while (p != NULL) {
+        *vector = p->item;
+        vector++;
+        p = p->next;
+    }
+
+    return start;
+}

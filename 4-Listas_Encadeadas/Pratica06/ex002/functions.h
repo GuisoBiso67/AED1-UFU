@@ -16,4 +16,15 @@ void printList(Node *l);
 int isEmptyList(Node *l);
 Node* randomNumbers(Node *l);
 Node* removeElement(Node *l, int elem);
+
+int biggestNumber(Node *l);
+Node* removeBiggestNumber(Node *l, const int elem);
+
+int isEvenNumber(const int number);
+Node* listOfEvens(Node *l);
+
+int numberOfElementsIterative(Node *l);
+int numberOfElementsRecursive(Node *l);
+
+int* returnVector(Node *l, int tam);
 #endif
