@@ -52,7 +52,6 @@ ListStudents* listOfStudents70(ListStudents *l) {
     ListStudents* students70 = createEmptyList();
     Student *elem = *l;
     int i=0;
-    printf("\n----- ALUNOS -----\n");
     while(elem != NULL) {
         if ((elem->data.pGrade+elem->data.tGrade) >= 70) {
             insertStudent(students70,elem->data);
