@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "functions.h"
+
+int main() {
+    ListStudents *studentsList = createEmptyList();
+    ListStudents *students70 = createEmptyList();
+
+    typedef struct student Student;
+    Student studentN;
+
+    unsigned int option;
+    printf("------------- MENU ---------------\n");
+    printf("1- Inserir Informacoes de Aluno\n");
+    printf("2- Procurar Aluno\n");
+    printf("3- Listar Alunos\n");
+    printf("4- Listar Alunos Com Media >70\n");
+    printf("5- Remover Informacoes de Aluno\n");
+    printf("0- Sair\n");
+    printf("Escolha uma opcao: \n\n");
+    scanf("%d", &option);
+    getchar();
+    while (option != 0) {
+        switch (option){
+            case 1:
+                printf("\nNome do aluno: ");
+                scanf("%30[^\n]%*c", studentN.name);
+                //getchar();
+                printf("Nota Aula Pratica (<=50): ");
+                scanf("%f", &studentN.pGrade);
+                while (studentN.pGrade > 50) {
+                    printf("Nota nao pode ser maior que 50. Insira novamente: ");
+                    scanf("%f", &studentN.pGrade);
+                }
+                printf("Nota Aula Teorica: ");
+                scanf("%f", &studentN.tGrade);
+                while (studentN.tGrade > 50) {
+                    printf("Nota nao pode ser maior que 50. Insira novamente: ");
+                    scanf("%f", &studentN.tGrade);
+                }
+                const int v1 = insertStudent(studentsList, studentN); // v = verificador;
+                if (v1==0) printf("Nao foi possivel adicionar aluno. Tente Novamente.\n");
+                break;
+            case 2:
+                printf("Nome do aluno: ");
+                scanf("%30[^\n]%*c", studentN.name);
+                //getchar();
+                const int v2 = searchStudent(studentsList, studentN.name);
+                if (v2==0) printf("Aluno nao encontrado. Tente Novamente.\n");
+                break;
+            case 3:
+                printList(studentsList);
+                break;
+            case 4:
+                students70 = listOfStudents70(studentsList);
+                printList(students70);
+                break;
+            case 5:
+                printf("Nome do aluno para remover: ");
+                scanf("%30[^\n]%*c", studentN.name);
+                //getchar();
+                removeStudent(studentsList, studentN.name);
+                break;
+            default: printf("Opcao Invalida\n"); break;
+        }
+
+        printf("------------- MENU ---------------\n");
+        printf("1- Inserir Informacoes de Aluno\n");
+        printf("2- Procurar Aluno\n");
+        printf("3- Listar Alunos\n");
+        printf("4- Listar Alunos Com Media >70\n");
+        printf("5- Remover Informacoes de Aluno\n");
+        printf("0- Sair\n");
+        printf("Escolha uma opcao: \n\n");
+        scanf("%d", &option);
+        getchar();
+    }
+}
