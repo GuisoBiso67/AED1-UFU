@@ -12,6 +12,10 @@ ListStudents* createEmptyList(){
 }
 
 void printList(ListStudents *l) {
+    if (*l == NULL) {
+        printf("Lista Vazia!\n");
+        return;
+    }
     Student *elem = *l;
     int i=0;
 
@@ -34,12 +38,16 @@ int insertStudent(ListStudents *l, struct student studN) {
 }
 
 int searchStudent(ListStudents *l, char *name) {
-    if (l == NULL) return 0;
+    if (*l == NULL) {
+        printf("Lista Vazia!\n");
+        return 0;
+    }
     Student *elem = *l;
     while (elem != NULL && strcmp(elem->data.name, name) != 0) {
         elem = elem->next;
     }
     if (elem == NULL) {
+        printf("Aluno nao encontrado. Tente Novamente.\n");
         return 0;
     }else{
         printf("Aluno encontrado!\n");
@@ -49,21 +57,30 @@ int searchStudent(ListStudents *l, char *name) {
 }
 
 ListStudents* listOfStudents70(ListStudents *l) {
-    ListStudents* students70 = createEmptyList();
-    Student *elem = *l;
-    int i=0;
-    while(elem != NULL) {
-        if ((elem->data.pGrade+elem->data.tGrade) >= 70) {
-            insertStudent(students70,elem->data);
+    if (*l == NULL) {
+        printf("Lista Vazia!\n");
+        return l;
+    }else {
+        ListStudents* students70 = createEmptyList();
+        Student *elem = *l;
+        int i=0;
+        while(elem != NULL) {
+            if ((elem->data.pGrade+elem->data.tGrade) >= 70) {
+                insertStudent(students70,elem->data);
+            }
+            i++;
+            elem = elem->next;
         }
-        i++;
-        elem = elem->next;
+        return students70;
     }
-    return students70;
 }
 
 ListStudents* removeStudent(ListStudents *l, char *name) {
-    if (l == NULL) return l;
+    if (*l == NULL) {
+        printf("Lista Vazia!\n");
+        return l;
+    }
+
     int found = 0;
     ListStudents before = NULL;
     ListStudents current = *l;
@@ -84,6 +101,7 @@ ListStudents* removeStudent(ListStudents *l, char *name) {
             before->next = current->next;
         }
         free(current);
+        printf("Aluno Removido!\n");
     }
     else printf("Aluno nao encontrado!\n");
     return l;

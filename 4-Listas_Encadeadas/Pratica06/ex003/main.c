@@ -10,7 +10,7 @@ int main() {
     Student studentN;
 
     unsigned int option;
-    printf("------------- MENU ---------------\n");
+    printf("\n------------- MENU ---------------\n");
     printf("1- Inserir Informacoes de Aluno\n");
     printf("2- Procurar Aluno\n");
     printf("3- Listar Alunos\n");
@@ -46,15 +46,17 @@ int main() {
                 scanf("%30[^\n]%*c", studentN.name);
                 //getchar();
                 const int v2 = searchStudent(studentsList, studentN.name);
-                if (v2==0) printf("Aluno nao encontrado. Tente Novamente.\n");
                 break;
             case 3:
                 printList(studentsList);
                 break;
             case 4:
                 students70 = listOfStudents70(studentsList);
-                printList(students70);
-                break;
+                if (students70 == studentsList) break;
+                else {
+                    printList(students70);
+                    break;
+                }
             case 5:
                 printf("Nome do aluno para remover: ");
                 scanf("%30[^\n]%*c", studentN.name);
@@ -64,7 +66,7 @@ int main() {
             default: printf("Opcao Invalida\n"); break;
         }
 
-        printf("------------- MENU ---------------\n");
+        printf("\n------------- MENU ---------------\n");
         printf("1- Inserir Informacoes de Aluno\n");
         printf("2- Procurar Aluno\n");
         printf("3- Listar Alunos\n");
