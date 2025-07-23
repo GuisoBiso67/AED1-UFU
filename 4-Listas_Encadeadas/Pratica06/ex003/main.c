@@ -2,12 +2,21 @@
 #include <stdlib.h>
 #include "functions.h"
 
+/*
+    OBS: tem uma tentativa de verificar as entradas float (quando vai ler as notas práticas e teóricas), mas ela gera um
+    loop infinito que não deixa ler o valor de novo. Isso faz o programa exibir o menu de novo e duplicar as
+    informações do aluno que estava sendo inserido. Não sei resolver.
+*/
+
 int main() {
     ListStudents *studentsList = createEmptyList();
     ListStudents *students70 = createEmptyList();
 
     typedef struct student Student;
     Student studentN;
+
+    int verAP;
+    int verAT;
 
     unsigned int option;
     printf("\n------------- MENU ---------------\n");
@@ -27,16 +36,40 @@ int main() {
                 scanf("%30[^\n]%*c", studentN.name);
                 //getchar();
                 printf("Nota Aula Pratica (<=50): ");
-                scanf("%f", &studentN.pGrade);
+                /*verAP*/ scanf("%f", &studentN.pGrade);
+                /*
+                while (verAP != 1) { // verificador de entrada (tentativa de verificador, nao funciona!)
+                    printf("Entrada inválida! Insira um numero decimal entre 0 e 50! : ");
+                    verAP = scanf("%f", &studentN.pGrade);
+                }
+                */
                 while (studentN.pGrade > 50) {
                     printf("Nota nao pode ser maior que 50. Insira novamente: ");
-                    scanf("%f", &studentN.pGrade);
+                    /*verAP*/ scanf("%f", &studentN.pGrade);
+                    /*
+                    while (verAP != 1) { // verificador de entrada (tentativa de verificador, nao funciona!)
+                        printf("Entrada inválida! Insira um numero decimal entre 0 e 50! : ");
+                        verAP = scanf("%f", &studentN.pGrade);
+                    }
+                    */
                 }
                 printf("Nota Aula Teorica: ");
-                scanf("%f", &studentN.tGrade);
+                /*verAT*/ scanf("%f", &studentN.tGrade);
+                /*
+                while (verAT != 1) { // verificador de entrada (tentativa de verificador, nao funciona!)
+                    printf("Entrada inválida! Insira um numero decimal entre 0 e 50! : ");
+                    verAT = scanf("%f", &studentN.tGrade);
+                }
+                */
                 while (studentN.tGrade > 50) {
                     printf("Nota nao pode ser maior que 50. Insira novamente: ");
-                    scanf("%f", &studentN.tGrade);
+                    /*verAT*/ scanf("%f", &studentN.tGrade);
+                    /*
+                    while (verAT != 1) { // verificador de entrada (tentativa de verificador, nao funciona!)
+                        printf("Entrada inválida! Insira um numero decimal entre 0 e 50! : ");
+                        verAT = scanf("%f", &studentN.tGrade);
+                    }
+                    */
                 }
                 const int v1 = insertStudent(studentsList, studentN); // v = verificador;
                 if (v1==0) printf("Nao foi possivel adicionar aluno. Tente Novamente.\n");
