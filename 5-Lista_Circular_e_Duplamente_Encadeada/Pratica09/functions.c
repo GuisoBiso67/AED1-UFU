@@ -22,6 +22,23 @@ void printList(Ships* li) {
     } while (aux != (*li));
 }
 
+int quantCycles(Ships* li, int fuel) {
+    if (li == NULL) return 0;
+    Ship *aux = *li;
+    Ship *shipN = *li; // nave que mais precisa abastecer;
+    int dif;
+    do {
+        dif = aux->data.maxCapacity - aux->data.currentFuel; // diferença entre combustivel atual e capacidade;
+        if (dif > (shipN->data.maxCapacity - shipN->data.currentFuel)) {
+            shipN = aux;
+        }
+        aux = aux->next;
+    }while (aux!=(*li));
+    const int cycles = (shipN->data.maxCapacity - shipN->data.currentFuel)/fuel;
+    return cycles;
+}
+
+/* versão 1 da função cycle (horrível)
 int cycle(Ships* li, int fuel, int quantShips) {
     if (li == NULL) return 0;
     Ship *aux = *li;
@@ -33,7 +50,7 @@ int cycle(Ships* li, int fuel, int quantShips) {
                 aux->data.currentFuel += fuel;
                 verify--;
             }
-            if (aux->next == (*li) && verify == quantShips) {
+            if (aux->next == (*li) && verify == quantShips) { // se o programa for parar quando verificar o while e o "verify" nao for decrementado, então todas as naves estão cheias
                 break;
             }
             aux = aux->next;
@@ -41,8 +58,26 @@ int cycle(Ships* li, int fuel, int quantShips) {
     }while (verify != quantShips); // será verdadeira quando não entrar no if nenhuma vez;
     return 1;
 }
+*/
 
-int insertAtBeginning(Ships* li, struct ship s) {
+int cycles(Ships* li, int fuel, int quantCycles) {
+    if (li == NULL) return 0;
+    Ship *aux = *li;
+    int verify = quantCycles; // verificador recebe a quantidade de ciclos necessária para encher as naves
+    do {
+        if ((aux->data.currentFuel+fuel) <= aux->data.maxCapacity ) {
+            aux->data.currentFuel += fuel;
+        }
+        if (aux->next == (*li)) { // decrementa 1 após cada ciclo;
+            //if (verify == 0) break; // verifica se os ciclos acabaram;
+            verify--;
+        }
+        aux = aux->next;
+    }while (aux != (*li) || verify > 0);
+    return 1;
+}
+
+int insertAtBeginning(Ships* li, struct ship s){
     if (li == NULL) return 0;
     Ship *node = (Ship*)malloc(sizeof(Ship));
     if (node == NULL) return 0;

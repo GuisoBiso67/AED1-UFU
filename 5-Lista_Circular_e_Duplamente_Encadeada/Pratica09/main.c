@@ -34,11 +34,13 @@ int main() {
     }
 
     // lembrando que ele imprime a lista em ordem crescente conforme a capacidade do combustível;
-    printf("\n---LISTA INICIAL---\n");
+    printf("\n---LISTA INICIAL (ANTES DO ABASTECIMENTO)---\n");
     printList(li);
 
-    printf("\n\n---LISTA APOS O CICLO---\n");
-    cycle(li, fuel, ships);
+    const int qCycles = quantCycles(li,fuel);
+    printf("Ciclos Necessarios: %d",qCycles);
+    printf("\n\n---LISTA APOS ABASTECIMENTO---\n");
+    cycles(li, fuel, qCycles);
     printList(li);
 
     free(vetCurrentFuel);
