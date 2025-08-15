@@ -30,7 +30,7 @@ int main() {
         struct ship n;
         n.maxCapacity = vetFuelCapacity[i];
         n.currentFuel = vetCurrentFuel[i];
-        insertNeatly(li,n);
+        insertNeatly(li,n); // inere de forma ordenada. Se quiser, dá para alterar a função para adicionar no fim ou no início. (Fiz as duas também);
     }
 
     // lembrando que ele imprime a lista em ordem crescente conforme a capacidade do combustível;

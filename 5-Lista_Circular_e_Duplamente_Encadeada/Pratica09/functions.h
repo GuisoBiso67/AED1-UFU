@@ -12,13 +12,23 @@ typedef struct elem { // elementos da lista;
     struct elem *next;
 } Ship;
 
+typedef struct {
+    Ship *start; // Ponteiro para o início da lista
+    Ship *end; // Ponteiro para o final da lista
+    int quant; // Quantidade de elementos na lista
+} Descriptor;
+
 // função cria lista
 Ships* createList();
+//void createListV2(Descriptor *d);
 
 // funções de inserção;
 int insertAtBeginning(Ships* li, struct ship s); // função extra
 int insertAtEnd(Ships* li, struct ship s); // função extra
 int insertNeatly(Ships* li, struct ship s); // ordena pela capacidade maxima de forma crescente;
+
+//int addAtBeginningV2(Descriptor* li, struct ship s);
+//int addAtEndV2(Descriptor* li, struct ship s);
 
 // funções de remoção;
 int removeFromBeginning(Ships* li); // função extra

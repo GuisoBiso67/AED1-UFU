@@ -7,6 +7,46 @@ Ships* createList() {
     if (li != NULL) *li = NULL;
     return li;
 }
+/*
+void createListV2(Descriptor* d) {
+    Ship *start = NULL;
+    Ship *end = NULL;
+    int quant = 0;
+}
+
+int addAtBeginningV2(Descriptor* li, struct ship s) {
+    Ship *newShip = (Ship*)malloc(sizeof(Ship));
+    newShip->data = s;
+    newShip->next = li->start;
+    if (li->start == NULL && li->end == NULL) {
+        li->start = newShip;
+        li->end = newShip;
+        li->quant += 1;
+    }else {
+        if (li->quant == 1) li->end = li->start;
+        li->start = newShip;
+        li->quant += 1;
+    }
+    return 1;
+}
+
+int addAtEndV2(Descriptor* li, struct ship s) {
+    Ship *newShip = (Ship*)malloc(sizeof(Ship));
+    newShip->data = s;
+    newShip->next = li->start; // ???
+    if (li->start == NULL && li->end == NULL) {
+        li->start = newShip;
+        li->end = newShip;
+        li->quant += 1;
+    }else {
+        li->end->next = newShip;
+        li->end = newShip;
+        newShip->next = li->start; // para ser lista circular;
+        li->quant += 1;
+    }
+    return 1;
+}
+*/
 
 void printList(Ships* li) {
     if (li == NULL) {
@@ -77,6 +117,8 @@ int cycles(Ships* li, int fuel, int quantCycles) {
     return 1;
 }
 
+
+// -------- FUNÇÕES EXTRAS -----------
 int insertAtBeginning(Ships* li, struct ship s){
     if (li == NULL) return 0;
     Ship *node = (Ship*)malloc(sizeof(Ship));
