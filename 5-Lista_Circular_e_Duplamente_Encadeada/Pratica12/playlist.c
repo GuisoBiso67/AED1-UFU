@@ -15,12 +15,12 @@ Lista* cria_lista(){
     return li;
 }
 
-void carregar_musicas_arquivo(Lista* li, const char* nomeArquivo) {
+int carregar_musicas_arquivo(Lista* li, const char* nomeArquivo) {
     Musica mpbx;
     FILE* arquivo = fopen(nomeArquivo, "r");
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo.\n");
-        return;
+        return 0;
     }
 
     char linha[200]; // Buffer para armazenar cada linha do arquivo
@@ -29,12 +29,14 @@ void carregar_musicas_arquivo(Lista* li, const char* nomeArquivo) {
         linha[strcspn(linha, "\n")] = '\0';
 
         // Separar nome da música e nome dos compositores
-        strcpy(mpbx.nome, strtok(linha, "-"));
-        strcpy(mpbx.composicao, strtok(NULL, "-"));
+        strcpy(mpbx.artista, strtok(linha, "|"));
+        strcpy(mpbx.nome, strtok(NULL, ";"));
+        trim(mpbx.artista);
         trim(mpbx.nome);
-        trim(mpbx.composicao);
-        insere_lista_inicio(li, mpbx); // Inserir na lista duplamente encadeada
+        // inserir_musicaF(li, mpbx);
+        inserir_musicaF(li, mpbx); // Inserir na lista duplamente encadeada
     }
+    return 1;
     fclose(arquivo);
 }
 
@@ -64,8 +66,8 @@ void avancar_posicoes(Lista* li, int qtd){
         i++;
     }
     if (atual!=NULL){
-        printf("\nDe: %s (%s) - ",(*li)->mpb.nome, (*li)->mpb.composicao);
-        printf("Para: %s (%s)\n",atual->mpb.nome, atual->mpb.composicao);
+        printf("\nDe: %s (%s) - ",(*li)->mpb.nome, (*li)->mpb.artista);
+        printf("Para: %s (%s)\n",atual->mpb.nome, atual->mpb.artista);
         printf("-------------------------------\n");
     }
     else printf("\nFinal da Playlist!");
@@ -78,7 +80,7 @@ void imprime_lista(Lista* li){
     noMusica* atual = *li;
     while(atual != NULL){
         printf("Nome: %s\n",atual->mpb.nome);
-        printf("Composicao: %s\n",atual->mpb.composicao);
+        printf("Composicao: %s\n",atual->mpb.artista);
         printf("-------------------------------\n");
         atual = atual->prox;
     }
@@ -97,7 +99,7 @@ void libera_lista(Lista* li){
 }
 
 void busca_ant_prox(Lista* li, char *val){
-int achou=0;
+    int achou=0;
     if(li == NULL)    // lista não existe
         return;
     noMusica* atual = *li;
@@ -110,16 +112,16 @@ int achou=0;
     if (achou == 1){
         printf("<Anterior> ");
         if (atual->ant !=NULL)
-            printf("Nome: %s\t Composicao: %s\n", atual->ant->mpb.nome, atual->ant->mpb.composicao);
+            printf("Nome: %s\t Composicao: %s\n", atual->ant->mpb.nome, atual->ant->mpb.artista);
         else printf("NULO\n");
-        printf("<Tocando Agora> Nome: %s\t Composicao: %s\n",atual->mpb.nome, atual->mpb.composicao);
+        printf("<Musica Encontrada> Nome: %s\t Composicao: %s\n",atual->mpb.nome, atual->mpb.artista);
         printf("<Proxima> ");
         if (atual->prox !=NULL)
-            printf("Nome: %s\t Composicao: %s\n", atual->prox->mpb.nome, atual->prox->mpb.composicao);
+            printf("Nome: %s\t Composicao: %s\n", atual->prox->mpb.nome, atual->prox->mpb.artista);
         else
             printf("NULO\n");
     }
-    else printf("\nMusica nao encontrada.");
+    else printf("\nMusica nao encontrada!");
 }
 
 
@@ -147,7 +149,7 @@ int lista_vazia(Lista* li){
 void trim(char *str) {
     char *start, *end;
 
-    // Encontrar o primeiro caracter que não é espaço em branco
+    // Encontrar o primeiro caractere que não é espaço em branco
     start = str;
     while (*start && isspace((unsigned char)*start)) {
         start++;
@@ -159,17 +161,73 @@ void trim(char *str) {
         return;
     }
 
-    // Encontrar o último caracter que não é espaço
+    // Encontrar o último caractere que não é espaço
     end = start + strlen(start) - 1;
     while (end > start && isspace((unsigned char)*end)) {
         end--;
     }
 
-    // Adiciona o caracter nulo após o último caracter que não é espaço
+    // Adiciona o caractere nulo após o último caractere que não é espaço
     *(end + 1) = '\0';
 
     // Mover a string para o início da posição de memória original
     if (start != str) {
         memmove(str, start, end - start + 2);
     }
+}
+
+
+
+// --------- FUNÇÕES NOVAS ------------
+
+int inserir_musicaF(Lista* li, Musica m) {
+    if (li == NULL) return 0;
+    noMusica *novo = (noMusica*)malloc(sizeof(noMusica));
+    if(novo == NULL) return 0;
+
+    if (*li == NULL) {
+        novo->mpb = m;
+        novo->ant = NULL;
+        novo->prox = *li;
+        *li = novo;
+        return 1;
+    }
+
+    noMusica *aux = *li;
+    while (aux->prox != NULL) {
+        aux = aux->prox;
+    }
+    novo->mpb = m;
+    novo->ant = aux;
+    novo->prox = NULL;
+    aux->prox = novo;
+    return 1;
+}
+
+int remover_musica(Lista* li, Musica m) {
+    if (li == NULL || *li == NULL) return 0;
+    noMusica *aux = *li;
+    do {
+        if ((strcmp(aux->mpb.nome, m.nome) == 0) && (strcmp(aux->mpb.artista, m.artista) == 0)) {
+            break;
+        }
+        aux = aux->prox;
+    }while (aux != NULL);
+
+    if (aux == NULL) return -1;
+
+    if (aux->ant == NULL) { // se for o primeiro elemento;
+        *li = aux->prox;
+        if (*li != NULL) { // se o elemento nao for o único;
+            (*li)->ant = NULL;
+        }
+    } else if (aux->prox == NULL) { // remoção do último;
+        aux->ant->prox = NULL;
+    }else { // remoção padrão;
+        aux->ant->prox = aux->prox;
+        aux->prox->ant = aux->ant;
+    }
+
+    free(aux);
+    return 1;
 }
