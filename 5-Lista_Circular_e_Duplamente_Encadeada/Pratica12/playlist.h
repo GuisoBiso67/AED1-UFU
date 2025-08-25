@@ -15,6 +15,11 @@ struct no{
 typedef struct no noMusica;
 typedef struct no *Lista;
 
+struct controle {
+    struct no *playingNow;
+};
+typedef struct controle Controle;
+
 Lista* cria_lista();
 
 // funções originais
@@ -29,5 +34,8 @@ void libera_lista(Lista* li);
 // funções novas
 int inserir_musicaF(Lista* li, Musica m); // insere musica no final da lista;
 int remover_musica(Lista* li, Musica m); // remove musica da playlist;
+int procurar_artista(Lista* li, char* artista);
+int reproduzir_musica(Lista* li, Musica m, Controle *c);
+void cria_lista_controle(Controle *c);
 
 #endif //PLAYLIST_H

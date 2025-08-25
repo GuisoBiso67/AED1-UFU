@@ -231,3 +231,44 @@ int remover_musica(Lista* li, Musica m) {
     free(aux);
     return 1;
 }
+
+void cria_lista_controle(Controle *c) {
+    c->playingNow = NULL;
+}
+
+int procurar_artista(Lista* li, char* artista) {
+    if (li == NULL || *li == NULL) return 0;
+    int cont = 0;
+    noMusica *aux = *li;
+    do {
+        if (strcmp(aux->mpb.artista, artista) == 0) {
+            printf("Nome: %s | Artista: %s\n", aux->ant->mpb.nome, aux->ant->mpb.artista);
+            cont++;
+        }
+        aux = aux->prox;
+    }while (aux != NULL);
+    if (cont == 0) {
+        printf("Nenhuma musica encontrada. Artista nao esta na playlist!");
+        return 1;
+    }
+    printf("%d musicas encontradas do artista %s.\n",cont,artista);
+    return 1;
+}
+
+int reproduzir_musica(Lista* li, Musica m, Controle *c) {
+    if (li == NULL || *li == NULL) return 0;
+    int achou = 0;
+    noMusica *aux = *li;
+    while (aux != NULL) {
+        if ((strcmp(aux->mpb.nome, m.nome) == 0) && (strcmp(aux->mpb.artista, m.artista) == 0)) {
+            achou = 1;
+            break;
+        }
+        aux = aux->prox;
+    }
+    if (achou == 0) return 0;
+    printf("<Tocando Agora> Musica: %s | Artista: %s\n", m.nome, m.artista);
+    c->playingNow = aux;
+    //printf("%s, %s\n", c->playingNow->mpb.artista, c->playingNow->mpb.nome);
+    return 1;
+}

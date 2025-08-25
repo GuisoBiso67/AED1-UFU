@@ -6,8 +6,12 @@
 int main(){
     int i=0, op;
     char mus[100];
+    char artista[100];
     Musica m;
     Lista* li = cria_lista();
+
+    Controle *c = malloc(sizeof(Controle));
+    cria_lista_controle(c);
     srand(time(NULL));
 
     do {
@@ -18,9 +22,10 @@ int main(){
         // novas funções
         printf("4 - Inserir Nova Musica\n"); // colocar no txt ????
         printf("5 - Remover Musica\n");
-        printf("6 - Procurar Compositor\n");
-        printf("7 - Avancar N musicas\n");
-        printf("8 - Retroceder N musicas\n");
+        printf("6 - Procurar Artista\n");
+        printf("7 - Tocar Musica\n");
+        printf("8 - Avancar N musicas\n");
+        printf("9 - Retroceder N musicas\n");
         printf("0 - Sair\n");
         printf("Opcao: ");
         scanf("%d", &op);
@@ -73,15 +78,30 @@ int main(){
                     printf("Musica removida!\n");
                 }else if (removeOK == -1){
                     printf("Musica nao encontrada!\n");
-                }else {
+                }else{
                     printf("Playlist Vazia!");
                 }
                 break;
             case 6:
+                printf("Nome do Artista:");
+                scanf("%[^\n]", artista);
+                procurar_artista(li, artista);
                 break;
             case 7:
+                printf("Nome da Musica: ");
+                scanf("%[^\n]", m.nome);
+                getchar();
+                printf("Artista: ");
+                scanf("%[^\n]", m.artista);
+                getchar();
+                const int repOK = reproduzir_musica(li, m, c);
+                if (repOK == 0) {
+                    printf("Nao foi possivel reproduzir a musica. Tente Novamente.\n");
+                }
                 break;
             case 8:
+                break;
+            case 9:
                 break;
             default:
                 printf("Opcao Invalida. Selecione outra acao");
