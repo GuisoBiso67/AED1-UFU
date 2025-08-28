@@ -1,0 +1,62 @@
+a;artigo;artigo definido feminino singular
+alto;adjetivo;de grande extensao vertical
+amanha;adverbio;no dia seguinte a hoje
+amarela;adjetivo;da cor do ouro ou do limao maduro
+as;contracao;contracao da preposicao "a" com o artigo "as"
+aviao;substantivo;aeronave com asas e um ou mais motores
+agua;substantivo;liquido incolor, inodoro e insipido, essencial a vida
+bela;adjetivo;que tem beleza; bonita
+bem;adverbio;de modo bom, satisfatorio ou agradavel
+brilha;verbo;emitir ou refletir luz
+bebe;substantivo;crianca muito nova
+cafe;substantivo;bebida feita com os graos torrados e moidos do cafeeiro
+canta;verbo;emitir sons musicais com a voz
+carro;substantivo;veiculo motorizado com quatro rodas
+carteiro;substantivo;pessoa que entrega correspondencia
+casa;substantivo;edificio de um ou poucos andares, destinado a habitacao
+cheira;verbo;exalar ou ter cheiro
+comeca;verbo;ter inicio
+criancas;substantivo;pessoas de pouca idade
+comida;substantivo;qualquer substancia que se come e bebe para manter a vida e o crescimento
+deliciosa;adjetivo;que delicia, que causa grande prazer
+depressa;adverbio;de modo rapido
+do;contracao;contracao da preposicao "de" com o artigo "o"
+dorme;verbo;estar no estado de sono
+escura;adjetivo;com falta de luz
+esta;verbo;ter ou apresentar como caracteristica temporaria
+estante;substantivo;movel com prateleiras para guardar livros, objetos, etc.
+estuda;verbo;aplicar a inteligencia para aprender
+filme;substantivo;fita ou pelicula de celuloide preparada para registrar imagens em movimento
+flor;substantivo;parte da planta onde se encontram os orgaos reprodutores, geralmente colorida e vistosa
+forte;adjetivo;que tem forca
+gato;substantivo;pequeno mamifero carnivoro da familia dos felideos
+gosto;verbo;ter preferencia ou sentir prazer
+grande;adjetivo;de tamanho superior ao normal
+hoje;adverbio;no dia em que estamos
+ilumina;verbo;encher de luz e claridade
+late;verbo;dar latidos
+livro;substantivo;conjunto de folhas de papel, em branco, escritas ou impressas, soltas ou cosidas, em brochura ou encadernadas
+lua;substantivo;satelite natural da Terra
+mae;substantivo;mulher que deu a luz, que cria ou criou uma ou mais criancas
+mar;substantivo;grande extensao de agua salgada
+molha;verbo;cobrir ou saturar de liquido
+no;contracao;contracao da preposicao "em" com o artigo "o"
+noite;substantivo;periodo do dia entre o por do sol e o nascer do sol
+nos;pronome;pronome pessoal da primeira pessoa do plural
+o;artigo;artigo definido masculino singular
+oito;numeral;numero correspondente a sete mais um
+para;preposicao;indica direcao de um movimento, destino
+parque;substantivo;terreno extenso, geralmente arborizado, destinado a recreio
+passa;verbo;mover-se de um lugar para outro
+plantas;substantivo;organismos vivos do reino vegetal
+prova;substantivo;exame para avaliar conhecimentos
+quente;adjetivo;que tem calor
+rapido;adjetivo;que se move, age ou acontece com velocidade
+sofa;substantivo;assento comprido para duas ou mais pessoas, com bracos e encosto
+sol;substantivo;estrela em torno da qual a Terra e outros planetas giram
+sorri;verbo;contrair os musculos faciais, especialmente dos labios, para expressar alegria
+tempo;substantivo;duracao dos acontecimentos, expressa em horas, dias, etc.
+uma;artigo;artigo indefinido feminino singular
+vamos;verbo;forma do verbo "ir" na primeira pessoa do plural do presente do indicativo
+vermelho;adjetivo;da cor do sangue
+viajar;verbo;deslocar-se de um lugar para outro
